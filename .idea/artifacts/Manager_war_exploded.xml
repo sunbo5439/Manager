@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Manager:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Manager_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Manager/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Manager" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-4.2.6.RELEASE" />
+          <element id="library" level="project" name="Spring MVC-4.2.6.RELEASE" />
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-1.2.1" />
+          <element id="library" level="project" name="commons-logging-1.1.2" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.39" />
+          <element id="library" level="project" name="c3p0" />
+          <element id="library" level="project" name="hibernate" />
+          <element id="library" level="project" name="commons-codec-1.9" />
+          <element id="library" level="project" name="gson-2.7" />
+          <element id="library" level="project" name="httpclient-4.5.1" />
+          <element id="library" level="project" name="httpcore-4.4.3" />
+          <element id="library" level="project" name="lightcouch-0.1.8" />
+          <element id="library" level="project" name="json package" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
