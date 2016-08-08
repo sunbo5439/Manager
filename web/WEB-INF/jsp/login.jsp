@@ -5,7 +5,7 @@
 <head>
     <title>登录</title>
 </head>
-<body>
+<body background="image/a.jpg">
 <div id="global">
     <form:form commandName="manager" action="verify" method="post">
         <fieldset>

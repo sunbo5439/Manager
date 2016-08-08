@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<body>
+<body background="image/a.jpg">
 <a href="gowelcome">返回主页</a>
 <br/><br/><br/>
 <a href="listMedia0?page=1&rows=20">待审核</a>

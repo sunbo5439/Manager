@@ -15,7 +15,7 @@
     <script src="http://vjs.zencdn.net/5.8/video.min.js"></script>
     <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
 </head>
-<body>
+<body background="image/a.jpg">
 <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" data-setup="{}">
     <source src="${media.file_uri}" type="video/mp4">
     <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm'/>

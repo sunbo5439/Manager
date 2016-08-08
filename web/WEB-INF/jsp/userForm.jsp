@@ -13,7 +13,7 @@
     <title>用户</title>
     <style type="text/css">@import url("<c:url value="/css/main.css"/>");</style>
 </head>
-<body>
+<body background="image/a.jpg">
 <div id="global">
     <a href="gowelcome">返回主页</a>
     <fieldset>

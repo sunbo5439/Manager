@@ -13,7 +13,7 @@
     <title>查找订单</title>
     <style type="text/css">@import url("<c:url value="/css/main.css"/>");</style>
 </head>
-<body>
+<body background="image/a.jpg">
 <a href="gowelcome">返回主页</a>
 <div id="global2">
     <h1>查找订单</h1>

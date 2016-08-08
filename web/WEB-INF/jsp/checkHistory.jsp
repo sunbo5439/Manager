@@ -13,7 +13,7 @@
     <title>媒资历史审核信息</title>
     <style type="text/css">@import url("<c:url value="/css/main.css"/>");</style>
 </head>
-<body>
+<body background="image/a.jpg">
 
 <div id="global">
     <fieldset>

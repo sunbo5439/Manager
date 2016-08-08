@@ -42,7 +42,7 @@
     </style>
 </head>
 <br/>
-<body>
+<body background="image/a.jpg">
 <a href="/media">返回</a>
 <table width="98%" border="0" cellpadding="2" cellspacing="1"
        bgcolor="#D1DDAA" align="center"
