@@ -39,14 +39,16 @@ public class Material {
     private String uuid;
     private String file_uri;
     private Date upload_time;
-    private int media_type;
-    private String price;
-    private String thumbnail;
-    private Integer duration;
-    private String lowdef_video_upload_path;
-    private String highdef_video_upload_path;
     @Enumerated(EnumType.ORDINAL)
     private VideoCheckStatus status;
+    private int media_type;
+    private String price;
+    private String lowdef_video_upload_path;
+    private String highdef_video_upload_path;
+    private String thumbnail;
+    private Integer duration;
+    private Integer pricing_type;
+
     @ElementCollection(targetClass = MaterialCheckInfoItem.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "material_checkinfo_item",joinColumns = @JoinColumn(name = "id",nullable = false))
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
@@ -54,7 +56,10 @@ public class Material {
 
     public Material(){}
 
-    public Material(Integer owner_id, String title, String video_tag, Integer hours, Integer minutes, Integer seconds, Integer frames, Date bDate, String copyright, Integer periods, String mType, String brief_info, Integer size, String dimension, String format, String original_name, String uuid, String file_uri, Date upload_time, int media_type, String price, String thumbnail, Integer duration, String lowdef_video_upload_path, String highdef_video_upload_path, VideoCheckStatus status, List<MaterialCheckInfoItem> checkInfo) {
+    public Material(Integer owner_id, String title, String video_tag, Integer hours, Integer minutes, Integer seconds, Integer frames, Date bDate,
+                    String copyright, Integer periods, String mType, String brief_info, Integer size, String dimension, String format, String original_name,
+                    String uuid, String file_uri, Date upload_time, int media_type, String price, String thumbnail, Integer duration,
+                    String lowdef_video_upload_path, String highdef_video_upload_path, VideoCheckStatus status, List<MaterialCheckInfoItem> checkInfo,Integer pricing_type) {
         this.owner_id = owner_id;
         this.title = title;
         this.video_tag = video_tag;
@@ -82,6 +87,7 @@ public class Material {
         this.highdef_video_upload_path = highdef_video_upload_path;
         this.status = status;
         this.checkInfo = checkInfo;
+        this.pricing_type=pricing_type;
     }
 
     public int getId() {
@@ -306,5 +312,13 @@ public class Material {
 
     public void setCheckInfo(List<MaterialCheckInfoItem> checkInfo) {
         this.checkInfo = checkInfo;
+    }
+
+    public Integer getPricing_type() {
+        return pricing_type;
+    }
+
+    public void setPricing_type(Integer pricing_type) {
+        this.pricing_type = pricing_type;
     }
 }

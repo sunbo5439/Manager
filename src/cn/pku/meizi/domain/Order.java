@@ -32,14 +32,15 @@ public class Order {
     private PayType pay_type;      //
     private Integer valid_day;     //天数
     private String comment;
-    @ManyToOne(targetEntity = User.class,fetch = FetchType.EAGER)
+    private Integer user_id;
+   /* @ManyToOne(targetEntity = User.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private User user;
+    private User user;*/
 
 
     public Order(){}
 
-    public Order(String uuid, Date cDate, Date mDate, Integer invoice_id, Integer status, Float price, PayType pay_type, Integer valid_day, String comment,  User user) {
+    public Order(String uuid, Date cDate, Date mDate, Integer invoice_id, Integer status, Float price, PayType pay_type, Integer valid_day, String comment,Integer user_id) {
         this.uuid = uuid;
         this.cDate = cDate;
         this.mDate = mDate;
@@ -49,8 +50,9 @@ public class Order {
         this.pay_type = pay_type;
         this.valid_day = valid_day;
         this.comment = comment;
+        this.user_id=user_id;
         //this.orderItems = orderItems;
-        this.user = user;
+
     }
 
     public Integer getId() {
@@ -133,12 +135,12 @@ public class Order {
         this.comment = comment;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public void update(Order order){
@@ -158,8 +160,6 @@ public class Order {
             this.pay_type = order.pay_type;
         if(order.valid_day!=null)
             this.valid_day = order.valid_day;
-        if(order.user!=null)
-            this.user = order.user;
         if(order.comment!=null)
             this.comment=order.comment;
     }

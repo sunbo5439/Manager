@@ -8,7 +8,6 @@
 <body background="image/a.jpg">
 <div id="global">
     <form:form commandName="manager" action="verify" method="post">
-        <fieldset>
             <legend>登陆</legend>
             <p>
                 <label for="role">类别: </label>
@@ -19,7 +18,6 @@
             <p>
                 <label for="managerName">登陆名: </label>
                 <form:input id="managerName" path="name" tabindex="1" />
-                <label>${errMessage}</label>
             </p>
             <p>
                 <label for="password">密码: </label>
@@ -30,7 +28,8 @@
                 <input id="submit" type="submit" tabindex="3" value="登陆">
                 <input id="reset" type="reset" tabindex="4">
             </p>
-        </fieldset>
+            <label>${errMessage}</label>
+
     </form:form>
 </div>
 </body>

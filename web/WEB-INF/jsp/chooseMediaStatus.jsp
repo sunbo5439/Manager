@@ -10,13 +10,12 @@
 <head>
     <title>Title</title>
 </head>
-<body>
 <body background="image/a.jpg">
-<a href="gowelcome">返回主页</a>
+<a href="/bgmanager/gowelcome">返回主页</a>
 <br/><br/><br/>
-<a href="listMedia0?page=1&rows=20">待审核</a>
-<a href="listMedia1?page=1&rows=20">通过</a>
-<a href="listMedia2?page=1&rows=20">未通过</a>
+<a href="/bgmanager/listMedia0?page=1&rows=20">待审核</a>
+<a href="/bgmanager/listMedia1?page=1&rows=20">通过</a>
+<a href="/bgmanager/listMedia2?page=1&rows=20">未通过</a>
 <br/>
 </body>
 </html>

@@ -26,7 +26,7 @@
 </video>
 <%--<a href="/legal/${media.id}">通过</a>  <a href="/illegal/${media.id}">不通过</a>--%>
 <div id="global">
-<form method="post" action="/check/${media.id}" id="checkResult">
+<form method="post" action="check/${media.id}" id="checkResult">
     审核结果:<br/>
     待审核<input type="radio" name="resultStatus" value=0><br/>
     通过<input type="radio" name="resultStatus" value=1 /><br/>

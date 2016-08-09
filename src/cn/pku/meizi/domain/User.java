@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import cn.pku.meizi.enumer.*;
+import com.sun.istack.internal.Nullable;
 import org.hibernate.annotations.*;
 
 /**

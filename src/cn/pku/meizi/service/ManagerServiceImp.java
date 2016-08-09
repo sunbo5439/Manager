@@ -46,4 +46,14 @@ public class ManagerServiceImp implements ManagerService {
         session.close();
         return rs;
     }
+
+    @Override
+    public Role getRoleByID(Integer id) {
+        Session session=HibernateUtil.getSession();
+        Transaction tx=session.beginTransaction();
+        Role role=(Role) session.get(Role.class,id);
+        tx.commit();
+        session.close();
+        return role;
+    }
 }

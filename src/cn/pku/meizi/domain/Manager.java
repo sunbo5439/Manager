@@ -18,7 +18,7 @@ public class Manager {
     private int id;
     private String name;
     private String password;
-    @ManyToOne(targetEntity = Role.class)
+    @ManyToOne(targetEntity = Role.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id",nullable = false)
     @Cascade(CascadeType.DETACH)
     private Role role;

@@ -12,4 +12,5 @@ public interface ManagerService {
     List<Role> getAllRoles();
     List<Manager> getAllManager();
     List<Manager> getManagerByName(String name);
+    Role getRoleByID(Integer id);
 }

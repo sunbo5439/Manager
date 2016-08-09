@@ -27,7 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session=httpServletRequest.getSession();
         Manager curManager=(Manager) session.getAttribute("curManager");
         if(curManager==null)
-            httpServletResponse.sendRedirect("/manager/login");
+            httpServletResponse.sendRedirect("/bgmanager/login");
         //httpServletResponse.sendRedirect("/page/login/user_login");
     }
 

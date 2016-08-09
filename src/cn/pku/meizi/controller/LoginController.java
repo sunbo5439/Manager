@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,6 +42,7 @@ public class LoginController {
         String errMessage="";
         List<Manager> managerList=myManagerService.getManagerByName(manager.getName());
         Manager compareManager=null;
+        manager.setRole(myManagerService.getRoleByID(manager.getRole().getId()));
         if(managerList.size()==0) {
             errMessage="用户名不存在";
         }
@@ -48,8 +50,11 @@ public class LoginController {
             compareManager=managerList.get(0);
             if(!manager.getPassword().equals(compareManager.getPassword())) errMessage="用户名或密码错误";
             if(manager.getRole().getId()!=compareManager.getRole().getId()) errMessage="用户类型错误";
+            if(manager.getRole().getId()!=compareManager.getRole().getId()) errMessage="权限错误";
+            if(manager.getRole().getAccess_level()<8) errMessage="权限不够";
         }
         model.addAttribute("errMessage",errMessage);
+        session.setAttribute("errMessage",errMessage);
         if(errMessage.equals("")) {
             curManager=compareManager;
             session.setAttribute("curManager", curManager);
@@ -77,24 +82,5 @@ public class LoginController {
         return "chooseMediaStatus";
     }
 
-    @RequestMapping("authorized_keys")
-    public String authorized_keys(HttpServletRequest request){
-        String value= request.getParameter("value");
-        String fileName="/Users/sunbo/Desktop/test.txt";
-        try {
-            FileWriter writer = new FileWriter(fileName, true);
-            writer.write(value+"\n");
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "fail";
-        }
-        return "success";
-    }
-    @RequestMapping("gowelcome")
-    public String goWelcome(){
-        return "welcome";
-    }
 
 }

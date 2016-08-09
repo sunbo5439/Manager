@@ -22,7 +22,9 @@ import java.util.Map;
 public class StatisticController {
 
     private String username = "root";
-    private String password = "sb221133";
+    private String password = "pkulky201";
+    String upload_log_url="jdbc:mysql://localhost:3306/upload_log";
+    String tps_url="jdbc:mysql://192.168.1.106:3306/tps";;
 
     @RequestMapping("program_statistics")
     public String programStatistic(Model model) {
@@ -112,7 +114,7 @@ public class StatisticController {
     public String uploadStatistic (Model model){
         Connection connection = null;
         String sql;
-        String url = "jdbc:mysql://localhost:3306/upload_log";
+        String url = upload_log_url;
         String count;
 
         try {
@@ -196,7 +198,7 @@ public class StatisticController {
     public String downloadStatistic (Model model){
         Connection connection = null;
         String sql;
-        String url = "jdbc:mysql://localhost:3306/tps";
+        String url = tps_url;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");

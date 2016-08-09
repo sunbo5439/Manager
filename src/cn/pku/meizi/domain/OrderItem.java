@@ -26,6 +26,8 @@ public class OrderItem {
     private Integer vendor_id;
     private Integer media_id;
     private String level;
+    private Integer media_usage_id;
+    private Integer download_count;
 
     @ManyToOne(targetEntity = Order.class)
     @JoinColumn(name = "order_id", nullable = false)
@@ -35,7 +37,8 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(int raw_id, int status, double price, String use_target, String use_way, String use_format, Integer use_period, Integer vendor_id, Integer media_id, String level, Order order) {
+    public OrderItem(int raw_id, int status, double price, String use_target, String use_way, String use_format, Integer use_period, Integer vendor_id, Integer media_id, String level,
+                     Order order,Integer media_usage_id,Integer download_count) {
         this.raw_id = raw_id;
         this.status = status;
         this.price = price;
@@ -47,6 +50,8 @@ public class OrderItem {
         this.media_id = media_id;
         this.level = level;
         this.order = order;
+        this.media_usage_id=media_usage_id;
+        this.download_count=download_count;
     }
 
     public int getId() {
@@ -143,5 +148,21 @@ public class OrderItem {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Integer getMedia_usage_id() {
+        return media_usage_id;
+    }
+
+    public void setMedia_usage_id(Integer media_usage_id) {
+        this.media_usage_id = media_usage_id;
+    }
+
+    public Integer getDownload_count() {
+        return download_count;
+    }
+
+    public void setDownload_count(Integer download_count) {
+        this.download_count = download_count;
     }
 }

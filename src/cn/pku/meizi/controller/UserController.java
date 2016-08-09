@@ -57,13 +57,4 @@ public class UserController {
         model.addAttribute("user",user);
         return "userForm";
     }
-    /*@RequestMapping("listallusers")
-    public String listAllUsers(Model model){
-        List<User> users=myUserService.listAllUsers();
-        String nte="";
-        model.addAttribute("users",users);
-        model.addAttribute("nameTelEmail",nte);
-        //return "allusers";
-        return "userForm";
-    }*/
 }

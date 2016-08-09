@@ -41,16 +41,8 @@ public class MediaCheckController {
         model.addAttribute("curMedia", curMaterial);
         return "checkHistory";
     }
-    /*@RequestMapping("/listMedia/{type}")
-    public String listMedia(@PathVariable("type") Integer type,Model model){
-        List<Media> medias=null;
-        if(type==0) medias=mediaService.getUnChecked();
-        else if(type==1) medias=mediaService.getLegalMedia();
-        else if(type==2) medias=mediaService.getIllegalMedia();
-        model.addAttribute("medias",medias);
-        return "mediaList";
-    }*/
-    @RequestMapping("check/{id}")
+
+    @RequestMapping("mediaCheck/check/{id}")
     public String checkMedia(@PathVariable("id") Integer id,HttpServletRequest arg0,Model model,HttpSession session){
         Integer resultStatus=Integer.parseInt(arg0.getParameter("resultStatus"));
         String remark="";
@@ -65,15 +57,6 @@ public class MediaCheckController {
         return "chooseMediaStatus";
     }
 
-    /*@RequestMapping("/listMedia/{type}")
-    public String pageSelect(@PathVariable("type") Integer type,ModelMap model, HttpServletRequest request,
-                             HttpServletResponse response) {
-        int page = Integer.parseInt(request.getParameter("page")); //当前页
-        int rows = Integer.parseInt(request.getParameter("rows"));//每页显示记录数
-        PageModel pageModel = mediaService.getPageModel(page-1,rows,type);
-        request.setAttribute("pageModel", pageModel);
-        return "mediaList";
-    }*/
     @RequestMapping("listMedia0")
     public String listMedia0(HttpServletRequest request){
         int page = Integer.parseInt(request.getParameter("page")); //当前页
@@ -99,25 +82,10 @@ public class MediaCheckController {
         return "mediaList2";
     }
 
-
-
-    /*@RequestMapping("/legal/{id}")
-    public String legal(@ModelAttribute String remark,@PathVariable("id") Integer id, Model model, HttpSession session ){
-        Manager curManager=(Manager) session.getAttribute("curManager");
-        mediaService.setStatus(id, VideoCheckStatus.legal,curManager,"");
-        List<Media> medias=null;
-        model.addAttribute("medias",medias);
-        System.out.println(remark);
-        return "mediaList";
+    @RequestMapping("gowelcome")
+    public String goWelcome(){
+        return "welcome";
     }
-    @RequestMapping("/illegal/{id}")
-    public String illegal(@PathVariable("id") Integer id,Model model,HttpSession session){
-        Manager curManager=(Manager) session.getAttribute("curManager");
-        mediaService.setStatus(id,VideoCheckStatus.illegal,curManager,"");
-        List<Media> medias=null;
-        model.addAttribute("medias",medias);
-        return "mediaList";
-    }*/
 
 
 }

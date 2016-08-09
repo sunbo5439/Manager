@@ -26,12 +26,13 @@
         </p>
         <label>${errMessage}</label>
     </form>
+    <br/>
     <h1>订单信息</h1>
     <p><label><b>订单编号: </b></label>${order.uuid}</p>
     <p><label><b>创建日期: </b></label>${order.cDate.toLocaleString()}</p>
     <p><label><b>修改日期: </b>${order.cDate.toLocaleString()} </label></p>
     <p><label><b>有效时间: </b>${order.valid_day} </label></p>
-    <p><label><b>状态: </b>${order.status} </label></p>
+    <p><label><b>状态(-2:已删除 -1:取消 1:已经生成 2:已支付 3:已申请发票 4:发票已开 </b>${order.status} </label></p>
     <p><label><b>单价: </b>${order.price.toString()} </label></p>
     <p><label><b>支付状态: </b>${order.pay_type.name} </label></p>
     <p>

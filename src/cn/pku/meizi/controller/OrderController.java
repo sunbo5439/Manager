@@ -6,6 +6,7 @@ import cn.pku.meizi.domain.User;
 import cn.pku.meizi.enumer.OrderStatus;
 import cn.pku.meizi.enumer.PayType;
 import cn.pku.meizi.service.OrderService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,8 @@ public class OrderController {
     private OrderService myOrderService;
     @RequestMapping("searchOrder")
     public String searchOrder(Model model , @RequestParam("uuid")String uuid){
-        Order order=myOrderService.getOrderbyUUID(uuid);
+        //Order order=myOrderService.getOrderbyUUID(uuid);
+        Order order=myOrderService.getOrderByID(Integer.parseInt(uuid));
         List<OrderItem> orderItems=null;
         String errMessage="";
         if(order==null) {
