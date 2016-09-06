@@ -19,15 +19,15 @@ public class OrderItem {
     private int raw_id;
     private int status;
     private double price;
-    private String use_target;
+    /*private String use_target;
     private String use_way;
     private String use_format;
-    private Integer use_period;
+    private Integer use_period;*/
     private Integer vendor_id;
     private Integer media_id;
     private String level;
     private Integer media_usage_id;
-    private Integer download_count;
+    /*private Integer download_count;*/
 
     @ManyToOne(targetEntity = Order.class)
     @JoinColumn(name = "order_id", nullable = false)
@@ -37,21 +37,15 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(int raw_id, int status, double price, String use_target, String use_way, String use_format, Integer use_period, Integer vendor_id, Integer media_id, String level,
-                     Order order,Integer media_usage_id,Integer download_count) {
+    public OrderItem(int raw_id, int status, double price, Integer vendor_id, Integer media_id, String level, Integer media_usage_id, Order order) {
         this.raw_id = raw_id;
         this.status = status;
         this.price = price;
-        this.use_target = use_target;
-        this.use_way = use_way;
-        this.use_format = use_format;
-        this.use_period = use_period;
         this.vendor_id = vendor_id;
         this.media_id = media_id;
         this.level = level;
+        this.media_usage_id = media_usage_id;
         this.order = order;
-        this.media_usage_id=media_usage_id;
-        this.download_count=download_count;
     }
 
     public int getId() {
@@ -86,38 +80,6 @@ public class OrderItem {
         this.price = price;
     }
 
-    public String getUse_target() {
-        return use_target;
-    }
-
-    public void setUse_target(String use_target) {
-        this.use_target = use_target;
-    }
-
-    public String getUse_way() {
-        return use_way;
-    }
-
-    public void setUse_way(String use_way) {
-        this.use_way = use_way;
-    }
-
-    public String getUse_format() {
-        return use_format;
-    }
-
-    public void setUse_format(String use_format) {
-        this.use_format = use_format;
-    }
-
-    public Integer getUse_period() {
-        return use_period;
-    }
-
-    public void setUse_period(Integer use_period) {
-        this.use_period = use_period;
-    }
-
     public Integer getVendor_id() {
         return vendor_id;
     }
@@ -142,14 +104,6 @@ public class OrderItem {
         this.level = level;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public Integer getMedia_usage_id() {
         return media_usage_id;
     }
@@ -158,11 +112,11 @@ public class OrderItem {
         this.media_usage_id = media_usage_id;
     }
 
-    public Integer getDownload_count() {
-        return download_count;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setDownload_count(Integer download_count) {
-        this.download_count = download_count;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
