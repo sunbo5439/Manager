@@ -24,6 +24,7 @@ public class Order {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String uuid;   //订单编号
+    private Integer user_id;
     private Date cDate;
     private Date mDate;
     private Integer  invoice_id;  //发票信息,抬头之类的
@@ -32,7 +33,7 @@ public class Order {
     private PayType pay_type;      //
     private Integer valid_day;     //天数
     private String comment;
-    private Integer user_id;
+
    /* @ManyToOne(targetEntity = User.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;*/

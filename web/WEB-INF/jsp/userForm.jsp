@@ -45,8 +45,8 @@
         <p><label>供应商编号: ${user.vendor_id}</label></p>
         <p><label>身份证号: ${user.id_card_no}</label></p>
         <p><label>用户名更改次数: ${user.username_change_times}</label></p>
-        <p><label>邮件是否激活: ${user.email_activated}</label></p>
-        <p><label>电话是否激活: ${user.mobile_activated}</label></p>
+        <%--<p><label>邮件是否激活: ${user.email_activated}</label></p>--%>
+        <%--<p><label>电话是否激活: ${user.mobile_activated}</label></p>--%>
     </fieldset>
 </div>
 </body>

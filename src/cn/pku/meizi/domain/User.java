@@ -53,15 +53,21 @@ public class User {
     private Integer vendor_id;
     private String id_card_no;
     private Integer username_change_times;
+    @Column(nullable = true)
     private boolean email_activated;
+    @Column(nullable = true)
     private boolean mobile_activated;
+    private String email_verify_code;
+    private String avatar_url;
 
     public User(){
         cDate=new Date();
         mDate=new Date();
     }
 
-    public User(String userName, String password, UserStatus status, Date cDate, Date mDate, String email, String mobile, String company, Role role, Province province_code, City city_code, Area area_code, String address, String qq, String realname, Integer vendor_id, String id_card_no, Integer username_change_times, boolean email_activated, boolean mobile_activated) {
+    public User(String userName, String password, UserStatus status, Date cDate, Date mDate, String email, String mobile, String company, Role role, Province province_code, City city_code,
+                Area area_code, String address, String qq, String realname, Integer vendor_id, String id_card_no, Integer username_change_times, boolean email_activated, boolean mobile_activated,
+                String email_verify_code, String avatar_url) {
         this.userName = userName;
         this.password = password;
         this.status = status;
@@ -82,6 +88,8 @@ public class User {
         this.username_change_times = username_change_times;
         this.email_activated = email_activated;
         this.mobile_activated = mobile_activated;
+        this.email_verify_code = email_verify_code;
+        this.avatar_url = avatar_url;
     }
 
     public Integer getId() {
@@ -250,5 +258,21 @@ public class User {
 
     public void setMobile_activated(boolean mobile_activated) {
         this.mobile_activated = mobile_activated;
+    }
+
+    public String getEmail_verify_code() {
+        return email_verify_code;
+    }
+
+    public void setEmail_verify_code(String email_verify_code) {
+        this.email_verify_code = email_verify_code;
+    }
+
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 }
