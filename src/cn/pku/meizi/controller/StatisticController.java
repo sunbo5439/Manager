@@ -24,7 +24,8 @@ public class StatisticController {
     private String username = "root";
     private String password = "pkulky201";
     String upload_log_url="jdbc:mysql://localhost:3306/upload_log";
-    String tps_url="jdbc:mysql://localhost:3306/tps";;
+    String tps_url="jdbc:mysql://localhost:3306/tps";
+    String couchDB_ip="192.168.1.8";
 
     @RequestMapping("program_statistics")
     public String programStatistic(Model model) {
@@ -32,7 +33,7 @@ public class StatisticController {
                 .setDbName("program")
                 .setCreateDbIfNotExist(false)
                 .setProtocol("http")
-                .setHost("162.105.180.15")
+                .setHost(couchDB_ip)
                 .setPort(5984);
         CouchDbClient dbClient = new CouchDbClient(properties);
 
@@ -269,7 +270,7 @@ public class StatisticController {
                 .setDbName("program")
                 .setCreateDbIfNotExist(false)
                 .setProtocol("http")
-                .setHost("162.105.16.84")
+                .setHost(couchDB_ip)
                 .setPort(5984);
         CouchDbClient dbClient = new CouchDbClient(properties);
 
