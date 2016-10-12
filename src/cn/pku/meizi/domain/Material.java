@@ -48,6 +48,7 @@ public class Material {
     private String thumbnail;
     private Integer duration;
     private Integer pricing_type;
+    private Integer xml_formated;
 
     @ElementCollection(targetClass = MaterialCheckInfoItem.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "material_checkinfo_item",joinColumns = @JoinColumn(name = "id",nullable = false))
@@ -56,10 +57,7 @@ public class Material {
 
     public Material(){}
 
-    public Material(Integer owner_id, String title, String video_tag, Integer hours, Integer minutes, Integer seconds, Integer frames, Date bDate,
-                    String copyright, Integer periods, String mType, String brief_info, Integer size, String dimension, String format, String original_name,
-                    String uuid, String file_uri, Date upload_time, int media_type, String price, String thumbnail, Integer duration,
-                    String lowdef_video_upload_path, String highdef_video_upload_path, VideoCheckStatus status, List<MaterialCheckInfoItem> checkInfo,Integer pricing_type) {
+    public Material(Integer owner_id, String title, String video_tag, Integer hours, Integer minutes, Integer seconds, Integer frames, Date bDate, String copyright, Integer periods, String mType, String brief_info, Integer size, String dimension, String format, String original_name, String uuid, String file_uri, Date upload_time, VideoCheckStatus status, int media_type, String price, String lowdef_video_upload_path, String highdef_video_upload_path, String thumbnail, Integer duration, Integer pricing_type, Integer xml_formated, List<MaterialCheckInfoItem> checkInfo) {
         this.owner_id = owner_id;
         this.title = title;
         this.video_tag = video_tag;
@@ -79,15 +77,16 @@ public class Material {
         this.uuid = uuid;
         this.file_uri = file_uri;
         this.upload_time = upload_time;
+        this.status = status;
         this.media_type = media_type;
         this.price = price;
-        this.thumbnail = thumbnail;
-        this.duration = duration;
         this.lowdef_video_upload_path = lowdef_video_upload_path;
         this.highdef_video_upload_path = highdef_video_upload_path;
-        this.status = status;
+        this.thumbnail = thumbnail;
+        this.duration = duration;
+        this.pricing_type = pricing_type;
+        this.xml_formated = xml_formated;
         this.checkInfo = checkInfo;
-        this.pricing_type=pricing_type;
     }
 
     public int getId() {
@@ -320,5 +319,13 @@ public class Material {
 
     public void setPricing_type(Integer pricing_type) {
         this.pricing_type = pricing_type;
+    }
+
+    public Integer getXml_formated() {
+        return xml_formated;
+    }
+
+    public void setXml_formated(Integer xml_formated) {
+        this.xml_formated = xml_formated;
     }
 }
