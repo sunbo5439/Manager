@@ -33,7 +33,8 @@ public class MaterialServiceImp implements MaterialService {
     public void setStatus(Integer id, VideoCheckStatus videoCheckStatus, Manager manager,String remark){
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
-        Material cur=(Material)session.load(Material.class,id);
+        //Material cur=(Material)session.load(Material.class,id);
+        Material cur=(Material)session.get(Material.class,id);
         cur.setStatus(videoCheckStatus);
         MaterialCheckInfoItem materialCheckInfoItem =new MaterialCheckInfoItem(manager.getId(),new Date(),videoCheckStatus,remark);
         cur.getCheckInfo().add(materialCheckInfoItem);
