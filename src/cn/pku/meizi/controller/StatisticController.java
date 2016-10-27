@@ -62,6 +62,16 @@ public class StatisticController {
                 "}");
         mapReduce3.setReduce("_sum");
 
+        DesignDocument.MapReduce mapReduce4 = new DesignDocument.MapReduce();
+        mapReduce4.setMap("function(doc) {\n" +
+                "  emit(\"\", 1);\n" +
+                "}");
+        mapReduce4.setReduce("_sum");
+
+        List<JsonObject> list_four = dbClient.view("_temp_view").tempView(mapReduce4).reduce(true).groupLevel(new Integer(1)).query(JsonObject.class);
+        Iterator<JsonObject> iterator4 = list_four.iterator();
+        int totalNum = Integer.parseInt(iterator4.next().get("value").toString());
+
         List<JsonObject> list_one = dbClient.view("_temp_view").tempView(mapReduce).reduce(true).groupLevel(new Integer(1)).query(JsonObject.class);
         Iterator<JsonObject> iterator = list_one.iterator();
         JSONArray tvStationStatistic = new JSONArray();
@@ -72,6 +82,7 @@ public class StatisticController {
             tvStationStatistic1.add(object.get("key").toString().split("\"")[1]);
             tvStationStatistic2.add(object.get("value").toString());
         }
+        dealOther(totalNum, tvStationStatistic1, tvStationStatistic2);
 
         List<JsonObject> list_two = dbClient.view("_temp_view").tempView(mapReduce2).reduce(true).groupLevel(new Integer(1)).query(JsonObject.class);
         Iterator<JsonObject> iterator2 = list_two.iterator();
@@ -83,6 +94,7 @@ public class StatisticController {
             typeStatistic1.add(object.get("key").toString().split("\"")[1]);
             typeStatistic2.add(object.get("value").toString());
         }
+        dealOther(totalNum, typeStatistic1, typeStatistic2);
 
         List<JsonObject> list_three = dbClient.view("_temp_view").tempView(mapReduce3).reduce(true).groupLevel(new Integer(1)).query(JsonObject.class);
         Iterator<JsonObject> iterator3 = list_three.iterator();
@@ -94,6 +106,7 @@ public class StatisticController {
             sourceStatistic1.add(object.get("key").toString().split("\"")[1]);
             sourceStatistic2.add(object.get("value").toString());
         }
+        dealOther(totalNum, sourceStatistic1, sourceStatistic2);
 
         tvStationStatistic.add(tvStationStatistic1);
         tvStationStatistic.add(tvStationStatistic2);
@@ -108,6 +121,24 @@ public class StatisticController {
         model.addAttribute("sourceStatistic", sourceStatistic);
 
         return "programStatistic";
+    }
+
+    private void dealOther(int totalNum, JSONArray keys, JSONArray values) {
+        int sum = 0;
+        for (Object object: values) {
+            sum += Integer.parseInt(object.toString());
+        }
+        int otherNum = totalNum - sum;
+        if (otherNum != 0) {
+            int position = keys.indexOf("其它");
+            if (position == -1) {
+                keys.add("其它");
+                values.add(otherNum);
+            } else {
+                values.set(position, otherNum + Integer.parseInt(values.getString(position)));
+            }
+        }
+
     }
 
 
@@ -234,26 +265,26 @@ public class StatisticController {
             totalMoney.add(totalMoney1);
             totalMoney.add(totalMoney2);
 
-//            JSONArray sourceStatistic = new JSONArray();
-//            JSONArray sourceStatistic1 = new JSONArray();
-//            JSONArray sourceStatistic2 = new JSONArray();
-//
-//            sql = "select raw_from, sum(down_count)\n" +
-//                    "from order_item_segment,sub_media,raw_media\n" +
-//                    "where order_item_segment.sub_media_id=sub_media.id && sub_media.raw_id=raw_media.id\n" +
-//                    "group by raw_from;";
-//            ResultSet resultSet_six = statement.executeQuery(sql);
-//            while (resultSet_six.next()) {
-//                sourceStatistic1.add(resultSet_six.getString(1));
-//                sourceStatistic2.add(resultSet_six.getString(2));
-//            }
+            JSONArray sourceStatistic = new JSONArray();
+            JSONArray sourceStatistic1 = new JSONArray();
+            JSONArray sourceStatistic2 = new JSONArray();
 
-//            sourceStatistic.add(sourceStatistic1);
-//            sourceStatistic.add(sourceStatistic2);
+            sql = "select raw_from, sum(down_count)\n" +
+                    "from order_item_segment,sub_media,raw_media\n" +
+                    "where order_item_segment.sub_media_id=sub_media.id && sub_media.raw_id=raw_media.id\n" +
+                    "group by raw_from;";
+            ResultSet resultSet_six = statement.executeQuery(sql);
+            while (resultSet_six.next()) {
+                sourceStatistic1.add(resultSet_six.getString(1));
+                sourceStatistic2.add(resultSet_six.getString(2));
+            }
+
+            sourceStatistic.add(sourceStatistic1);
+            sourceStatistic.add(sourceStatistic2);
 
             model.addAttribute("totalDownload", totalDownload);
             model.addAttribute("totalMoney", totalMoney);
-//            model.addAttribute("sourceStatistic", sourceStatistic);
+            model.addAttribute("sourceStatistic", sourceStatistic);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -270,7 +301,7 @@ public class StatisticController {
                 .setDbName("program")
                 .setCreateDbIfNotExist(false)
                 .setProtocol("http")
-                .setHost(couchDB_ip)
+                .setHost("162.105.180.15")
                 .setPort(5984);
         CouchDbClient dbClient = new CouchDbClient(properties);
 

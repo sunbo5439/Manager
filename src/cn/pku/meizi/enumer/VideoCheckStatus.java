@@ -4,6 +4,7 @@ package cn.pku.meizi.enumer;
  * Created by sunbo on 16/7/20.
  */
 public enum VideoCheckStatus {
+    unIssue("未发布"),
     unCheck("未审核"),
     legal("通过"),
     illegal("未通过");
@@ -31,9 +32,22 @@ public enum VideoCheckStatus {
         this.name = name;
     }
 
-    public static VideoCheckStatus getFromInt(Integer integer){
-        if(integer==0) return VideoCheckStatus.unCheck;
-        else if(integer==1) return VideoCheckStatus.legal;
-        else return VideoCheckStatus.illegal;
+    public static VideoCheckStatus getFromInt(Integer type){
+        VideoCheckStatus rs=null;
+        switch (type){
+            case 0:
+                rs= VideoCheckStatus.unIssue;
+                break;
+            case 1:
+                rs= VideoCheckStatus.unCheck;
+                break;
+            case 2:
+                rs= VideoCheckStatus.legal;
+                break;
+            case 3:
+                rs= VideoCheckStatus.illegal;
+                break;
+        }
+        return rs;
     }
 }

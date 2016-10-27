@@ -28,9 +28,9 @@
 <div id="global">
 <form method="post" action="check/${media.id}" id="checkResult">
     审核结果:<br/>
-    待审核<input type="radio" name="resultStatus" value=0><br/>
-    通过<input type="radio" name="resultStatus" value=1 /><br/>
-    未通过<input type="radio" name="resultStatus" value=2><br/>
+    待审核<input type="radio" name="resultStatus" value=1><br/>
+    通过<input type="radio" name="resultStatus" value=2 /><br/>
+    未通过<input type="radio" name="resultStatus" value=3><br/>
     <textarea name="remark" rows="3" cols="20">备注</textarea>
     <input type="submit" value="确定"/>&nbsp;<input type="reset" value="取消"/>
 </form>

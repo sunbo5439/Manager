@@ -61,7 +61,7 @@ public class MediaCheckController {
     public String listMedia0(HttpServletRequest request){
         int page = Integer.parseInt(request.getParameter("page")); //当前页
         int rows = Integer.parseInt(request.getParameter("rows"));//每页显示记录数
-        PageModel pageModel = materialService.getPageModel(page-1,rows,0);
+        PageModel pageModel = materialService.getPageModel(page-1,rows,VideoCheckStatus.unCheck);
         request.setAttribute("pageModel", pageModel);
         return "mediaList0";
     }
@@ -69,7 +69,7 @@ public class MediaCheckController {
     public String listMedia1(HttpServletRequest request){
         int page = Integer.parseInt(request.getParameter("page")); //当前页
         int rows = Integer.parseInt(request.getParameter("rows"));//每页显示记录数
-        PageModel pageModel = materialService.getPageModel(page-1,rows,1);
+        PageModel pageModel = materialService.getPageModel(page-1,rows,VideoCheckStatus.legal);
         request.setAttribute("pageModel", pageModel);
         return "mediaList1";
     }
@@ -77,7 +77,7 @@ public class MediaCheckController {
     public String listMedia2(HttpServletRequest request){
         int page = Integer.parseInt(request.getParameter("page")); //当前页
         int rows = Integer.parseInt(request.getParameter("rows"));//每页显示记录数
-        PageModel pageModel = materialService.getPageModel(page-1,rows,2);
+        PageModel pageModel = materialService.getPageModel(page-1,rows,VideoCheckStatus.illegal);
         request.setAttribute("pageModel", pageModel);
         return "mediaList2";
     }

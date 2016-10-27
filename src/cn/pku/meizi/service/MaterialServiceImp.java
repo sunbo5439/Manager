@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Service
 public class MaterialServiceImp implements MaterialService {
-    @Override
+    /*@Override
     public List<Material> getUnChecked() {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
@@ -28,7 +28,7 @@ public class MaterialServiceImp implements MaterialService {
         tx.commit();
         session.close();
         return rs;
-    }
+    }*/
     @Override
     public void setStatus(Integer id, VideoCheckStatus videoCheckStatus, Manager manager,String remark){
         Session session = HibernateUtil.getSession();
@@ -66,7 +66,7 @@ public class MaterialServiceImp implements MaterialService {
         return cur;
     }
 
-    @Override
+    /*@Override
     public List<Material> getLegalMedia() {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
@@ -86,7 +86,7 @@ public class MaterialServiceImp implements MaterialService {
         tx.commit();
         session.close();
         return rs;
-    }
+    }*/
 
     @Override
     public List<Material> getMediaByStatus(VideoCheckStatus videoCheckStatus) {
@@ -100,21 +100,23 @@ public class MaterialServiceImp implements MaterialService {
     }
 
     @Override
-    public PageModel getPageModel(Integer currentPage, Integer rows,Integer status) {
-        int totals = getAllCount(status);
-        List<Material> datas = getAll(currentPage, rows,status);
+    public PageModel getPageModel(Integer currentPage, Integer rows,VideoCheckStatus videoCheckStatus) {
+        int totals = getAllCount(videoCheckStatus);
+        List<Material> datas = getAll(currentPage, rows,videoCheckStatus);
         return new PageModel(totals, datas, rows, currentPage);
     }
-    public int getAllCount(Integer status) {
+    public int getAllCount(VideoCheckStatus videoCheckStatus) {
         // TODO Auto-generated method stub
         // TODO Auto-generated method stub
+        int status=videoCheckStatus.ordinal();
         long countAll = (long)HibernateUtil.getSession()
                 .createQuery("select count(*) from Material m where m.status=:x ").setInteger("x",status)
                 .uniqueResult();
         return (int)countAll;
     }
 
-    public List<Material> getAll(int currPage, int pageSize, Integer status){
+    public List<Material> getAll(int currPage, int pageSize, VideoCheckStatus videoCheckStatus){
+        int status=videoCheckStatus.ordinal();
         Session session = HibernateUtil.getSession();
         Query query = session.createQuery("select m from Material m where m.status=:x").setInteger("x",status);
         query.setFirstResult(currPage*pageSize);
